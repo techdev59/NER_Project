@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+    
+        .login-form {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+    
+            .login-form-box {
+                background-color: #fff;
+                box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                padding: 10px 30px 30px 30px;
+                width: 600px;
+              border-radius: 
+              5px;
+            }
+    
+            .login-form-header {
+                margin-bottom: 40px;
+            }
+    
+            .login-form-header h2 {
+                font-size: 26px;
+                font-weight: 700;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+    
+            .login-form-header p {
+                font-size: 18px;
+                font-family: Arial, Helvetica, sans-serif;
+                line-height: 0;
+            }
+    
+            .login-form-header p a {
+                text-decoration: none;
+                color: #0e74bd;
+            }
+    
+            .input-item {
+                margin-bottom: 20px;
+            }
+    
+            .input-item input {
+                width: calc(100% - 30px);
+                padding: 16px;
+                border-radius: 5px;
+                border: 1px solid #787878;
+            }
+    
+            input#submit {
+                margin-top: 5px;
+                background-color: #0e74bd;
+                border: none;
+                color: #fff;
+                padding: 12px 40px;
+                font-size: 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+    
+            /* custom Checkbox */
+            .remember-pass {
+                display: block;
+                margin-bottom: 15px;
+            }
+    
+            .remember-pass input {
+                padding: 0;
+                height: initial;
+                width: initial;
+                margin-bottom: 0;
+                display: none;
+                cursor: pointer;
+            }
+    
+            .remember-pass label {
+                position: relative;
+                cursor: pointer;
+            }
+    
+            .remember-pass label:before {
+                content: '';
+                background-color: transparent;
+                border: 2px solid #0e74bd;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+                padding: 10px;
+                display: inline-block;
+                position: relative;
+                vertical-align: middle;
+                cursor: pointer;
+                margin-right: 10px;
+            }
+    
+            .remember-pass label {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+    
+            .remember-pass input:checked+label:after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 1px;
+                left: 8px;
+                width: 6px;
+                height: 12px;
+                border: solid #0e74bd;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-form">
+        <div class="login-form-box">
+            <div class="login-form-header">
+                <h2>Login Page</h2>
+            </div>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+
+                <div class="input-item">
+                    <!-- <input type="text" placeholder="Enter Name"> -->
+                    {{ form.email }}
+                </div>
+                <div class="input-item">
+                    <!-- <input type="text" placeholder="Enter Password"> -->
+                    {{ form.password }}
+                </div>
+                {{ form.submit }}
+            </form>
+            <div class="login-form-header">
+                <p>Don't have an account? <a href="{{ url_for('register') }}">Sign Up</a> </p>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+</body>
+
+</html>
