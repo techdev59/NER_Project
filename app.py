@@ -51,7 +51,7 @@ class Sentence(db.Model):
     lang_type = db.Column(db.Enum(LangType), nullable=False, default=LangType.en)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-
+db.create_all()
 class RegisterForm(FlaskForm):
 	name = StringField(validators=[
         InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Name"})
