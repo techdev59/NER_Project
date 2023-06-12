@@ -99,19 +99,14 @@ def index():
 def extract():
     if request.method == 'POST':
         raw_text = request.form['rawtext']
+        lang = request.form['lang']
 
-        try:
-            lang = detect(str(raw_text))
-        except Exception as e:
-            print(e)
-            lang = "en"
+        if raw_text.isspace() == True or lang == "":
+            return redirect(url_for("index"))
 
         if lang not in ["en","fr","ja","nl","es"]:
             lang = "en"
              
-
-        if raw_text.isspace() == True:
-            return redirect(url_for("index"))
         
         sentence = Sentence(content=raw_text, user_id=current_user.id, lang_type=lang)
         db.session.add(sentence)

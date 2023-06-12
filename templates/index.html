@@ -70,7 +70,23 @@
 <br/>
 <div class="container" >
 
-	<form method="POST" action="{{ url_for('extract')}}">
+	<form method="POST" action="{{ url_for('extract')}}">  
+    
+    <div class="form-group">
+      <label for="lang-select">Select your language</label>
+
+      <select class="form-control" name="lang" required id="lang-select">
+          <option value="">--Please select a language--</option>
+          <option value="en">English</option>
+          <option value="fr">French</option>
+          <option value="ja">Japanese</option>
+          <option value="nl">Dutch</option>
+          <option value="es">Spanish</option>
+      </select>
+    </div>
+
+    
+
 		<textarea rows="5" cols="5" required="true" name="rawtext" class="form-control"></textarea>
 		<button type="reset" class="btn btn-primary"><i class="fa fa-eraser"></i> Clear</button>
         <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
