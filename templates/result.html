@@ -160,19 +160,19 @@
       </form>
     </div>
     <div>
-      {% for rawtext, formated_text in english_sent.items() %}
+      {% for text in english_sent %}
         <div class="container">
           <div class="row">
             <div class="col-md-6">
               <div class="card mb-10 shadow-sm" id="custom_card">
                 <h4>Original Data</h4>
-                <p>{{rawtext}}</p>
+                <p>{{text[0]}}</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="card mb-10 shadow-sm" id="custom_card2">
                 <h4>Result of Data</h4>
-                <p>{{ formated_text|markdown }}</p>
+                <p>{{ text[1]|markdown }}</p>
               </div>
             </div>
           </div>

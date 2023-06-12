@@ -113,7 +113,7 @@ def extract():
         db.session.commit()
 
     all_sentence =  Sentence.query.filter_by(user_id=current_user.id)
-    english_sent = {}
+    english_sent = []
     if request.args.get('lang') == 'en':
         en_sentences = all_sentence.filter_by(lang_type="en").all()
         nlp = spacy.load('en_core_web_lg')
@@ -122,7 +122,7 @@ def extract():
             html = displacy.render(docx,style="ent")
             html = html.replace("\n\n","\n")
             result = HTML_WRAPPER.format(html)
-            english_sent[i.content] = result
+            english_sent.append((i.content, result))
     elif request.args.get('lang') == 'fr':
         en_sentences = all_sentence.filter_by(lang_type="fr").all()
         nlp = spacy.load('fr_core_news_lg')
@@ -131,7 +131,7 @@ def extract():
             html = displacy.render(docx,style="ent")
             html = html.replace("\n\n","\n")
             result = HTML_WRAPPER.format(html)
-            english_sent[i.content] = result
+            english_sent.append((i.content, result))
     elif request.args.get('lang') == 'es':
         en_sentences = all_sentence.filter_by(lang_type="es").all()
         nlp = spacy.load('es_core_news_lg')
@@ -140,7 +140,7 @@ def extract():
             html = displacy.render(docx,style="ent")
             html = html.replace("\n\n","\n")
             result = HTML_WRAPPER.format(html)
-            english_sent[i.content] = result
+            english_sent.append((i.content, result))
     elif request.args.get('lang') == 'nl':
         en_sentences = all_sentence.filter_by(lang_type="nl").all()
         nlp = spacy.load('nl_core_news_lg')
@@ -149,7 +149,7 @@ def extract():
             html = displacy.render(docx,style="ent")
             html = html.replace("\n\n","\n")
             result = HTML_WRAPPER.format(html)
-            english_sent[i.content] = result
+            english_sent.append((i.content, result))
     elif request.args.get('lang') == 'ja':
         en_sentences = all_sentence.filter_by(lang_type="ja").all()
         nlp = spacy.load('ja_core_news_lg')
@@ -158,7 +158,7 @@ def extract():
             html = displacy.render(docx,style="ent")
             html = html.replace("\n\n","\n")
             result = HTML_WRAPPER.format(html)
-            english_sent[i.content] = result
+            english_sent.append((i.content, result))
     else:
         en_sentences = all_sentence.filter_by(lang_type="en").all()
         nlp = spacy.load('en_core_web_lg')
@@ -167,7 +167,7 @@ def extract():
             html = displacy.render(docx,style="ent")
             html = html.replace("\n\n","\n")
             result = HTML_WRAPPER.format(html)
-            english_sent[i.content] = result
+            english_sent.append((i.content, result))
 
     return render_template('result.html', english_sent=english_sent)
 
