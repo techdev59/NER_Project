@@ -68,8 +68,11 @@ class RegisterForm(FlaskForm):
             email=email.data).first()
 		if existing_user_email:
 			raise ValidationError(
-                'That username already exists. Please choose a different one.')
+                'That email already exists. Please choose a different one.')
 
+def valid_credentials(form, field):
+    user = User.query.filter_by(email=form.email.data).first()
+    return user and bcrypt.check_password_hash(user.password, form.password.data)
 
 class LoginForm(FlaskForm):
     email = StringField(validators=[
@@ -80,6 +83,19 @@ class LoginForm(FlaskForm):
 
     submit = SubmitField('Submit')
 
+    def validate_email(self, email):
+        existing_user_email = User.query.filter_by(
+            email=email.data).first()
+        if existing_user_email is None:
+            raise ValidationError(
+                "Email doesn't exist.")
+
+    def validate_password(self, field):
+        user = User.query.filter_by(email=self.email.data).first()
+        if user:
+            if not valid_credentials(self, field):
+                raise ValidationError('Invalid password.')
+    
 
 
 @app.route('/')
